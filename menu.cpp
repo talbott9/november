@@ -1,7 +1,3 @@
-enum chars1 { louis1, longford1, lombard1, hildegarde1, margaret1, phyllis1 };
-enum chars2 { hildegarde2, margaret2, phyllis2, louis2, longford2, lombard2 };
-chars1 char1; chars2 char2;
-
 class Menu { 
 	public:
 		SDL_Rect startButton;
@@ -16,7 +12,7 @@ LTexture gName1, gName2, gStart;
 void Menu::renderMenu() {
 	SDL_GetMouseState(&mouseX, &mouseY);
 	mouseBox.x = mouseX; mouseBox.y = mouseY; mouseBox.w = 5; mouseBox.h = 5;
-	printf("%i/%i/%i\n", mouseX, mouseY, menuStep);
+	//printf("%i/%i/%i\n", mouseX, mouseY, menuStep);
 	background.bgID = 4;
 
 	if(menuStep == 0) {
@@ -84,6 +80,14 @@ void Menu::handleEvent(SDL_Event& e) {
 				if(menuStep == 0) {
 					if(checkCollision(mouseBox, startButton)) {
 						menuStep = 1;
+						switch(determineChars()) {
+							case louis_hildegarde:
+								louishildegarde1.clear();
+								louishildegarde1.seekg(0, std::ios::beg);
+								indexScript(louishildegarde1); 
+								break;
+						}
+						//printf("%i/%i/%i/%i\n", louis_hildegarde, determineChars(), trigger, lineNumber);
 					} else if(checkCollision(mouseBox, loadButton)) {
 						menuStep = 2;
 					} else if(checkCollision(mouseBox, name1Button)) {

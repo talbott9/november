@@ -123,8 +123,10 @@ int main( int argc, char* args[] )
 				background.render(camera);
 				
 				if(menuStep == 1) {
-					cutscene.louis_hildegarde();
-					
+					switch(determineChars()) {
+						case louis_hildegarde:
+							cutscene.louis_hildegarde(); break;
+					}
 					if(promptSelect)
 						renderButtons();
 				} else {
@@ -143,7 +145,9 @@ int main( int argc, char* args[] )
 					if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
 						if(e.key.keysym.sym == SDLK_q)
 							quit = true;
-						if(e.key.keysym.sym == SDLK_a) {					
+						if(e.key.keysym.sym == SDLK_a) {
+							louhil = louhil1_1_2_2;
+							indexScript(louishildegarde1_1_2_2);				
 						}
 					}
 

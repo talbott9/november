@@ -42,6 +42,8 @@ bool loadMedia()
 		success = false;
 	if(!gLouisPortraitSpecial.loadFromFile("resources/char/louis/louisportraitspecial.png"))
 		success = false;
+	if(!gLouisPortraitSpecial2.loadFromFile("resources/char/louis/louisportraitspecial2.png"))
+		success = false;
 	 if(!gLouis.loadFromFile("resources/char/louis/louis.png"))
 		 success = false;
 	 if(!gLouisJoy.loadFromFile("resources/char/louis/louisjoy.png"))
@@ -53,6 +55,8 @@ bool loadMedia()
 	 if(!gLouisSurprised.loadFromFile("resources/char/louis/louissurprised.png"))
 		 success = false;
 	 if(!gLouisSpecial.loadFromFile("resources/char/louis/louisspecial.png"))
+		 success = false;
+	 if(!gLouisSpecial2.loadFromFile("resources/char/louis/louisspecial2.png"))
 		 success = false;
 	 if(!gLouisSad.loadFromFile("resources/char/louis/louissad.png"))
 		 success = false;

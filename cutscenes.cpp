@@ -31,8 +31,24 @@ int i;
 char c;
 std::string scriptLine[NUMBER_OF_LINES];
 
-enum louishilscenes {louhil1, louhil1_1, louhil1_1_1, louhil1_1_2, louhil1_1_2_1, louhil1_1_2_2, louhil1_1_2_2_1, louhil1_1_2_2_1_1, louhil1_1_2_2_2, louhil1_1_2_2_3};
+enum louishilscenes {louhil1, louhil1_1, louhil1_1_1, louhil1_1_2, louhil1_1_2_1, louhil1_1_2_2, louhil1_1_2_2_1, louhil1_1_2_2_1_1, louhil1_1_2_2_1_2, louhil1_1_2_2_2, louhil1_1_2_2_3};
 louishilscenes louhil;
+
+enum chars1 { louis1, longford1, lombard1, hildegarde1, margaret1, phyllis1 };
+enum chars2 { hildegarde2, margaret2, phyllis2, louis2, longford2, lombard2 };
+chars1 char1; chars2 char2;
+
+enum detChar { louis_hildegarde };
+
+int determineChars() {
+	switch(char1) {
+		case louis1: 
+			switch(char2) {
+				     case hildegarde2: return louis_hildegarde; break;
+			     }
+			break;
+	}
+}
 
 void indexScript(std::ifstream& script) {
 	while(script.get(c)) {
@@ -123,7 +139,7 @@ void charAnim(LTexture* gChar, LTexture* gCharFace) {
 	}
 }
 
-//0 Louis: 0 neutral, 1 joy, 2 sad, 3 angry, 4 surprised, 5 special
+//0 Louis: 0 neutral, 1 joy, 2 sad, 3 angry, 4 surprised, 5 special, 6 special2
 //1 Hildegarde: 0 neutral, 1 joy, 2 impatient, 3 angry, 4 glare
 int louisX = 0; int louisY = 0;
 LTexture gFace;
@@ -136,6 +152,7 @@ void renderCharacter(int characterID, int faceID) {
 				case 3: gFace = gLouisAngry; break;
 				case 4: gFace = gLouisSurprised; break;
 				case 5: gFace = gLouisSpecial; break;
+				case 6: gFace = gLouisSpecial2; break;
 			}
 			charAnim(&gLouis, &gFace);
 			gLouis.render(louisX, louisY);
@@ -166,6 +183,7 @@ void renderPortrait(int characterID, int faceID) {
 				case 3: gLouisPortraitAngry.render(louisXP, louisYP); break;
 				case 4: gLouisPortraitSurprised.render(louisXP, louisYP); break;
 				case 5: gLouisPortraitSpecial.render(louisXP, louisYP); break;
+				case 6: gLouisPortraitSpecial2.render(louisXP, louisYP); break;
 			}
 			break;
 	}	
@@ -176,6 +194,38 @@ void renderTextbox() {
 		textbox.render(camera, "hi");
 }
 
+void resetToMenu() {
+	for(int i =0; i < NUMBER_OF_LINES; i++)
+		scriptLine[i] = "";
+	switch(determineChars()) {
+		case louis_hildegarde:
+			louishildegarde1.clear(); 
+			louishildegarde1.seekg(0, std::ios::beg);
+			louishildegarde1_1.clear(); 
+			louishildegarde1_1.seekg(0, std::ios::beg);
+			louishildegarde1_1_1.clear(); 
+			louishildegarde1_1_1.seekg(0, std::ios::beg);
+			louishildegarde1_1_2.clear(); 
+			louishildegarde1_1_2.seekg(0, std::ios::beg);
+			louishildegarde1_1_2_1.clear(); 
+			louishildegarde1_1_2_2.seekg(0, std::ios::beg);
+			louishildegarde1_1_2_2_1.clear(); 
+			louishildegarde1_1_2_2_1_1.seekg(0, std::ios::beg);
+			louishildegarde1_1_2_2_1_2.clear(); 
+			louishildegarde1_1_2_2_2.seekg(0, std::ios::beg);
+			louishildegarde1_1_2_2_3.clear(); 
+			break;
+	}
+	trigger = 0; lineNumber = 0; freeText(&gText); menuStep = 0;
+	louhil = louhil1; background.success = 0; charFadeSuccess = 0;
+}
+
+void resetScene() {
+	 freeText(&gText); trigger = 0; lineNumber = 0; promptSelect = 0;
+}
+
+int complimentPoints;
+bool switchlever;
 void Cutscene::louis_hildegarde() {
 	switch(louhil) {
 		case louhil1:
@@ -303,6 +353,206 @@ void Cutscene::louis_hildegarde() {
 				case 26: renderTextbox(); renderPortrait(0, 0); break;
 				case 27: renderTextbox(); renderPortrait(0, 0); break;
 				case 28: renderTextbox(); renderPortrait(0, 0); break;
+				case 29: resetToMenu(); break;
+			} break;
+		case louhil1_1_2: 
+			switch(trigger) {
+				case 0: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 3); break;
+				case 1: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 2: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 3: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 4: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 5: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 4); break;
+				case 6: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 7: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 8: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 9: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 3); break;
+				case 10: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 11: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 12: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 13: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 14: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 15: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 16: promptSelect = 1; renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 17: if(!bunki) {
+						 louhil = louhil1_1_2_1; 
+						 indexScript(louishildegarde1_1_2_1);
+					 } else {
+						 louhil = louhil1_1_2_2; 
+						 indexScript(louishildegarde1_1_2_2);
+					 }
+					 freeText(&gText); trigger = 0; lineNumber = 0; promptSelect = 0;
+					 renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+			} break;
+		case louhil1_1_2_1: 
+			switch(trigger) {
+				case 0: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 1: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 2: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 3); break;
+				case 3: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 4: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 5: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 6: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 7: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 8: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 9: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 10: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 11: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 12: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 13: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 14: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 15: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 16: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 17: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 18: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 19: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 20: if(!charFadeSuccess) {
+						 charFadeOut = 1;
+						 charFade = 1;
+					 }
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 21: renderTextbox(); renderPortrait(0, 0); break;
+				case 22: resetToMenu(); break;
+			} break;
+		case louhil1_1_2_2: 
+			switch(trigger) {
+				case 0: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 1: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 2: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 3: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 4: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 5: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 6: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 7: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 4); break;
+				case 8: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 9: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 10: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 11: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 3); break;
+				case 12: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 13: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 14: promptSelect = 1; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 15: promptSelect = 0; 
+					 if(!bunki && !switchlever) {
+						 complimentPoints++; lineNumber++; freeText(&gText); switchlever = 1;
+					 }
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 16: promptSelect = 1; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 17: promptSelect = 0;
+					 if(!bunki && switchlever) {
+						 complimentPoints++; lineNumber++; freeText(&gText); switchlever = 0;
+					 }
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 18: promptSelect = 1; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 19: promptSelect = 0;
+					 if(!bunki && !switchlever) {
+						 complimentPoints++; lineNumber++; freeText(&gText); switchlever = 1;
+					 }
+					 if(complimentPoints == 3)
+						 renderCharacter(1, 1);
+					 else
+						 renderCharacter(1, 0);
+					 renderTextbox(); renderPortrait(0, 0); break;
+				case 20: if(complimentPoints == 3)
+						 renderCharacter(1, 1);
+					 else
+						 renderCharacter(1, 0);
+					 renderTextbox(); renderPortrait(0, 0); break;
+				case 21: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 22: promptSelect = 1; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 23: promptSelect = 0; 
+					 if(!bunki && switchlever) {
+						 complimentPoints++; lineNumber++; freeText(&gText); switchlever = 0;
+					 }
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 24: promptSelect = 1; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 25: promptSelect = 0; 
+					 if(bunki && !switchlever) {
+						 complimentPoints++; lineNumber++; freeText(&gText); switchlever = 1;
+					 }
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+			      	case 26: promptSelect = 1; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+			     	case 27: promptSelect = 0; 
+					 if(!bunki && switchlever) {
+						 complimentPoints++; lineNumber++; freeText(&gText); switchlever = 0;
+					 }
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0);
+					 if(complimentPoints == 6) {
+						 //louhil = louhil1_1_2_2_1;
+						 indexScript(louishildegarde1_1_2_2_1);
+					 } else if(complimentPoints >= 3) {
+						 //louhil = louhil1_1_2_2_2;
+						 indexScript(louishildegarde1_1_2_2_2);
+					 } else {
+						 //louhil = louhil1_1_2_2_3;
+						 indexScript(louishildegarde1_1_2_2_3);
+					 }
+					 resetScene(); break;
+			} break;
+		case louhil1_1_2_2_1: 
+			switch(trigger) {
+				case 0: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 1: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 2: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 3: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 4: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 4); break;
+				case 5: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 6: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 7: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 8: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 9: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 10: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 11: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 12: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 13: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 14: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 15: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 16: if(!background.success)
+						 background.changeBG = 1;
+					 background.bgID = 2;
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 17: background.success = 0; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 18: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 20: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 21: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 22: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 23: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 24: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 25: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 26: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 27: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 28: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 29: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 30: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 31: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+				case 32: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 33: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 6); break;
+				case 34: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 6); break;
+				case 35: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 36: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 37: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 38: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 39: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 40: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 41: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 42: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 43: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 44: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+				case 45: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 46: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 47: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 48: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 49: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 50: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 4); break;
+				case 51: renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 52: promptSelect = 1; renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+				case 53: if(!bunki) {
+						 louhil = louhil1_1_2_2_1_1;
+						 indexScript(louishildegarde1_1_2_2_1_1);
+					 } else {
+						 louhil = louhil1_1_2_2_1_2;
+						 indexScript(louishildegarde1_1_2_2_1_2);
+					 }
+					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
 			} break;
 
 	}
