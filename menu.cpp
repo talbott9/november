@@ -1,15 +1,12 @@
-class Menu { 
-	public:
-		SDL_Rect startButton;
-		SDL_Rect loadButton;
-		SDL_Rect name1Button;
-		SDL_Rect name2Button;
-		void renderMenu();
-		void handleEvent(SDL_Event& e);
-};
+#include "menu.h"
+
+int menuTicks;
 
 LTexture gName1, gName2, gStart;
 void Menu::renderMenu() {
+	gTextbox.loadFromFile("resources/objects/textbox.png");
+	gCoastBG.loadFromFile("resources/bg/coast.png");
+	gMenuBG.loadFromFile("resources/bg/menu.png");
 	SDL_GetMouseState(&mouseX, &mouseY);
 	mouseBox.x = mouseX; mouseBox.y = mouseY; mouseBox.w = 5; mouseBox.h = 5;
 	//printf("%i/%i/%i\n", mouseX, mouseY, menuStep);
@@ -79,15 +76,19 @@ void Menu::handleEvent(SDL_Event& e) {
 			case SDL_BUTTON_LEFT:
 				if(menuStep == 0) {
 					if(checkCollision(mouseBox, startButton)) {
-						menuStep = 1;
 						switch(determineChars()) {
 							case louis_hildegarde:
+								loadLouisPortrait(); loadHildegarde();
+								gComputerBG.loadFromFile("resources/bg/computer.png");
+								gStreet1BG.loadFromFile("resources/bg/streetinautumn1.png");
+								gStreet2BG.loadFromFile("resources/bg/streetinautumn2.png");
+								gLivingRoomBG.loadFromFile("resources/bg/livingroom.png");
 								louishildegarde1.clear();
 								louishildegarde1.seekg(0, std::ios::beg);
 								indexScript(louishildegarde1); 
 								break;
 						}
-						//printf("%i/%i/%i/%i\n", louis_hildegarde, determineChars(), trigger, lineNumber);
+						menuStep = 1;
 					} else if(checkCollision(mouseBox, loadButton)) {
 						menuStep = 2;
 					} else if(checkCollision(mouseBox, name1Button)) {

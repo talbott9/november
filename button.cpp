@@ -1,7 +1,6 @@
 #include "button.h"
 
 LTexture gText;
-LTexture gArrow;
 LTexture gYes;
 LTexture gNo;
 

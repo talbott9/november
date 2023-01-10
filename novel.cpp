@@ -72,12 +72,6 @@ bool init()
 	return success;
 }
 
-void freeAll() {
-	//Free loaded images
-	gTextbox.free();
-	gArrow.free();
-}
-
 void close()
 {
 	freeAll();
@@ -119,7 +113,8 @@ int main( int argc, char* args[] )
 
 			//While application is running
 			while( !quit )
-			{	
+			{
+				printf("%i\n", menuTicks);
 				background.render(camera);
 				
 				if(menuStep == 1) {

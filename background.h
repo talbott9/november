@@ -9,6 +9,3 @@ class Background {
 	private:
 		int backgroundTicks;
 };
-
-LTexture gBackground, gForeground;
-LTexture gMenuBG, gComputerBG, gStreet1BG, gStreet2BG, gLivingRoomBG, gCoastBG;
