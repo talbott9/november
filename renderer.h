@@ -74,7 +74,7 @@ LTexture gMargaret, gMargaretNeutral, gMargaretJoy, gMargaretSad, gMargaretAngry
 
 
 LTexture gMargaretPortrait, gMargaretPortraitNeutral, gMargaretPortraitJoy, gMargaretPortraitSad, gMargaretPortraitAngry, gMargaretPortraitSurprised, gMargaretPortraitSpecial;
-LTexture gHildegardePortrait, gHildegardePortraitNeutral, gHildegardePortraitJoy, gHildegardePortraitImpatient, gHildegardePortraitAngry, gHildegardePortraitGlare;
+LTexture gHildegardePortrait, gHildegardePortraitNeutral, gHildegardePortraitJoy, gHildegardePortraitImpatient, gHildegardePortraitAngry, gHildegardePortraitGlare, gHildegardePortraitHeigan;
 LTexture gLouisPortrait, gLouisPortraitNeutral, gLouisPortraitJoy, gLouisPortraitSad, gLouisPortraitAngry, gLouisPortraitSurprised, gLouisPortraitSpecial, gLouisPortraitSpecial2, gLouisPortraitKaikou;
 
 void loadHildegarde() {
@@ -85,6 +85,17 @@ void loadHildegarde() {
        	gHildegardeAngry.loadFromFile("resources/char/hildegarde/hildegardeangry.png");
        	gHildegardeGlare.loadFromFile("resources/char/hildegarde/hildegardeglare.png");
        	gHildegardeHeigan.loadFromFile("resources/char/hildegarde/hildegardeheigan.png");
+
+}
+
+void loadHildegardePortrait() {
+	gHildegardePortrait.loadFromFile("resources/char/hildegarde/hildegardeportrait.png"); 
+	gHildegardePortraitNeutral.loadFromFile("resources/char/hildegarde/hildegardeportraitneutral.png");
+       	gHildegardePortraitJoy.loadFromFile("resources/char/hildegarde/hildegardeportraitjoy.png");
+       	gHildegardePortraitImpatient.loadFromFile("resources/char/hildegarde/hildegardeportraitimpatient.png");
+       	gHildegardePortraitAngry.loadFromFile("resources/char/hildegarde/hildegardeportraitangry.png");
+       	gHildegardePortraitGlare.loadFromFile("resources/char/hildegarde/hildegardeportraitglare.png");
+       	gHildegardePortraitHeigan.loadFromFile("resources/char/hildegarde/hildegardeportraitheigan.png");
 
 }
 
@@ -114,12 +125,6 @@ void freeAll() {
 	gLouisPortraitSpecial.free();  
        	gLouisPortraitSpecial2.free();  
        	gLouisPortraitKaikou.free(); 
-	gHildegarde.free(); 
-	gHildegardeNeutral.free();
-       	gHildegardeJoy.free();
-       	gHildegardeImpatient.free();
-       	gHildegardeAngry.free();
-       	gHildegardeGlare.free();
-       	gHildegardeHeigan.free();
-
+	gHildegarde.free(); gHildegardeNeutral.free(); gHildegardeJoy.free(); gHildegardeImpatient.free(); gHildegardeAngry.free(); gHildegardeGlare.free(); gHildegardeHeigan.free();
+	gHildegardePortrait.free(); gHildegardePortraitNeutral.free(); gHildegardePortraitJoy.free(); gHildegardePortraitImpatient.free(); gHildegardePortraitAngry.free(); gHildegardePortraitGlare.free(); gHildegardePortraitHeigan.free();
 }
