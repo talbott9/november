@@ -111,16 +111,17 @@ int main( int argc, char* args[] )
 			//Event handler
 			SDL_Event e;
 
-			//While application is running
-			while( !quit )
+			char1 = hildegarde1; char2 = louis2;
+			while(!quit)
 			{
-				printf("%i\n", menuTicks);
 				background.render(camera);
 				
 				if(menuStep == 1) {
 					switch(determineChars()) {
 						case louis_hildegarde:
 							cutscene.louis_hildegarde(); break;
+						case hildegarde_louis:
+							cutscene.hildegarde_louis(); break;
 					}
 					if(promptSelect)
 						renderButtons();
@@ -141,8 +142,8 @@ int main( int argc, char* args[] )
 						if(e.key.keysym.sym == SDLK_q)
 							quit = true;
 						if(e.key.keysym.sym == SDLK_a) {
-							louhil = louhil1_1_2_2;
-							indexScript(louishildegarde1_1_2_2);				
+							hillou = hillou1_1;
+							indexScript(hildegardelouis1_1);				
 						}
 					}
 

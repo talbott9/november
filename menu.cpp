@@ -87,6 +87,16 @@ void Menu::handleEvent(SDL_Event& e) {
 								louishildegarde1.seekg(0, std::ios::beg);
 								indexScript(louishildegarde1); 
 								break;
+							case hildegarde_louis:
+								loadHildegardePortrait(); loadLouis();
+								gStreet1BG.loadFromFile("resources/bg/streetinautumn1.png");
+								gStreet2BG.loadFromFile("resources/bg/streetinautumn2.png");
+								gClassroomBG.loadFromFile("resources/bg/classroom.png");
+								gLakeBG.loadFromFile("resources/bg/lake.png");
+								hildegardelouis1.clear();
+								hildegardelouis1.seekg(0, std::ios::beg);
+								indexScript(hildegardelouis1); 
+								break;
 						}
 						menuStep = 1;
 					} else if(checkCollision(mouseBox, loadButton)) {

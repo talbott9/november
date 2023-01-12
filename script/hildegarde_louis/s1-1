@@ -3,17 +3,18 @@ Louis: "So? We don't study in the same class."1
 Hilda: "Yes, but I should have seen you somewhere at lunch break, at least."1
 Louis: "I don't eat lunch..."1
 Hilda: "Really? What do you do during lunch break then?"1
-Louis: "Read detective novels..."1
-Hilda: "......"1
-Louis: "......"1
-Louis: "Why are you looking at me like I'm a pathetic creature?"1
-Hilda: "Well, I suppose that's not the worst thing to do...\say, you're from --- class?"1
-Louis: "That's right..."1
-Hilda: "I'll give you a little helping hand... I'll help you spice up\your life a bit... Don't worry, I won't charge for it."1
-Louis: "That's great, I wouldn't pay. (whatever it is)"1
+Louis: "Read detective novels."1
+Hilda: "Wow, you must be really lonely..."1
+Louis: "I'm not."1
+Hilda: "How many countless days must you have spent burying your\sorrows in detective novels?"1
+Louis: "None..."1
+Hilda: "I'd say some kind of change is in order."1
+Louis: "It's not."1
+Hilda: "I'll show up tomorrow... I have an idea. Don't worry,\I won't charge for it, if you're wondering."1
+Louis: "That's great because I wouldn't pay."1
 Hilda: "I'll see you tomorrow at school."1
-Louis: "Er... okay."1\The next day...1
-Louis: "Huh... so the man with the cane, the street, and the victim\all had the same name? I believe it..."1
+Louis: "Er... okay."1
+Louis: "Huh, so the girl with the eye patch, the street, the culprit,\and the first victim all had the same name? I believe it..."1
 Louis: "........."1
 Hilda: "........."1
 Louis: "........."1
@@ -24,7 +25,10 @@ Hilda: "If you win, you get to keep them."1
 Louis: "So? There's no shortage of sticks in this country."1
 Hilda: "Well, what about this? I'll make it more interesting...\if you win, I'll do anything you want."1
 Louis: "Really? What about robbing a bank?"1
-Hilda: "No, then it'd be gambling... of course, if I win, I also get\you to do anything I want."1
-Louis: "Whatever, let's get it over with..."1
-Hilda: "I'll explain the rules again: we alternately take up to\three sticks out of the cup; whoever gets the last stick of the thirty loses."1
+Hilda: "No, then it'd be gambling. Of course, if I win, I also get\you to do what I want."1
+Louis: "Whatever, let's get it over with."1
+Hilda: "I'll explain the rules again: we alternately take two or five\sticks out of the cup; whoever gets the last stick of the thirty loses."1
 Hilda: "Ready? I'll go first!"1
+           Take two\\Take five1
+Louis: "Oh, ho."1
+Louis: "Hmm..."1

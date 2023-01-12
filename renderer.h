@@ -64,7 +64,7 @@ class LTexture
 };
 
 LTexture gBackground, gForeground;
-LTexture gMenuBG, gComputerBG, gStreet1BG, gStreet2BG, gLivingRoomBG, gCoastBG;
+LTexture gMenuBG, gComputerBG, gStreet1BG, gStreet2BG, gLivingRoomBG, gCoastBG, gClassroomBG, gLakeBG;
 
 LTexture gTextbox, gArrow;
 
@@ -96,6 +96,19 @@ void loadHildegardePortrait() {
        	gHildegardePortraitAngry.loadFromFile("resources/char/hildegarde/hildegardeportraitangry.png");
        	gHildegardePortraitGlare.loadFromFile("resources/char/hildegarde/hildegardeportraitglare.png");
        	gHildegardePortraitHeigan.loadFromFile("resources/char/hildegarde/hildegardeportraitheigan.png");
+
+}
+
+void loadLouis() {
+	gLouis.loadFromFile("resources/char/louis/louis.png"); 
+	gLouisNeutral.loadFromFile("resources/char/louis/louisneutral.png");
+      	gLouisJoy.loadFromFile("resources/char/louis/louisjoy.png");  
+       	gLouisSad.loadFromFile("resources/char/louis/louissad.png");  
+       	gLouisAngry.loadFromFile("resources/char/louis/louisangry.png");  
+       	gLouisSurprised.loadFromFile("resources/char/louis/louissurprised.png");   
+	gLouisSpecial.loadFromFile("resources/char/louis/louisspecial.png");  
+       	gLouisSpecial2.loadFromFile("resources/char/louis/louisspecial2.png");  
+       	gLouisKaikou.loadFromFile("resources/char/louis/louiskaikou.png");  
 
 }
 
