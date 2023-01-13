@@ -25,12 +25,12 @@ void Menu::renderMenu() {
 			case lombard1: name1 = "Lombard"; break;
 			case hildegarde1: name1 = "Hildegarde"; break;
 			case margaret1: name1 = "Margaret"; break;
-			case phyllis1: name1 = "Phyllis"; break;
+			case blanche1: name1 = "Blanche"; break;
 		}
 		switch(char2) {
 			case hildegarde2: name2 = "Hildegarde"; break;
 			case margaret2: name2 = "Margaret"; break;
-			case phyllis2: name2 = "Phyllis"; break;
+			case blanche2: name2 = "Blanche"; break;
 			case louis2: name2 = "Louis"; break;
 			case longford2: name2 = "Longford"; break;
 			case lombard2: name2 = "Lombard"; break;

@@ -68,14 +68,41 @@ LTexture gMenuBG, gComputerBG, gStreet1BG, gStreet2BG, gLivingRoomBG, gCoastBG, 
 
 LTexture gTextbox, gArrow;
 
-LTexture gLouis, gLouisNeutral, gLouisJoy, gLouisSad, gLouisAngry, gLouisSurprised, gLouisSpecial, gLouisSpecial2, gLouisKaikou;
+LTexture gLouis, gLouisHilda, gLouisNeutral, gLouisJoy, gLouisSad, gLouisAngry, gLouisSurprised, gLouisSpecial, gLouisSpecial2, gLouisKaikou;
 LTexture gHildegarde, gHildegardeNeutral, gHildegardeJoy, gHildegardeImpatient, gHildegardeAngry, gHildegardeGlare, gHildegardeHeigan;
+LTexture gBlanche, gBlancheNeutral, gBlancheJoy, gBlancheSad, gBlanchePerturbed, gBlancheNeutral2;
+LTexture gLongford, gLongfordNeutral, gLongfordJoy, gLongfordDaring, gLongfordReflect;
 LTexture gMargaret, gMargaretNeutral, gMargaretJoy, gMargaretSad, gMargaretAngry, gMargaretSurprised, gMargaretSpecial;
-
 
 LTexture gMargaretPortrait, gMargaretPortraitNeutral, gMargaretPortraitJoy, gMargaretPortraitSad, gMargaretPortraitAngry, gMargaretPortraitSurprised, gMargaretPortraitSpecial;
 LTexture gHildegardePortrait, gHildegardePortraitNeutral, gHildegardePortraitJoy, gHildegardePortraitImpatient, gHildegardePortraitAngry, gHildegardePortraitGlare, gHildegardePortraitHeigan;
 LTexture gLouisPortrait, gLouisPortraitNeutral, gLouisPortraitJoy, gLouisPortraitSad, gLouisPortraitAngry, gLouisPortraitSurprised, gLouisPortraitSpecial, gLouisPortraitSpecial2, gLouisPortraitKaikou;
+
+void loadLongford() {
+	gLongford.loadFromFile("resources/char/longford/longford.png"); 
+	gLongfordNeutral.loadFromFile("resources/char/longford/longfordneutral.png");
+       	gLongfordJoy.loadFromFile("resources/char/longford/longfordjoy.png");
+       	gLongfordDaring.loadFromFile("resources/char/longford/longforddaring.png");
+       	gLongfordReflect.loadFromFile("resources/char/longford/longfordreflect.png");
+}
+
+void loadBlanche() {
+	gBlanche.loadFromFile("resources/char/blanche/blanche.png"); 
+	gBlancheNeutral.loadFromFile("resources/char/blanche/blancheneutral.png");
+       	gBlancheJoy.loadFromFile("resources/char/blanche/blanchejoy.png");
+       	gBlancheSad.loadFromFile("resources/char/blanche/blanchesad.png");
+       	gBlanchePerturbed.loadFromFile("resources/char/blanche/blancheperturbed.png");
+	gBlancheNeutral2.loadFromFile("resources/char/blanche/blancheneutral2.png");
+}
+
+void loadMargaret() {
+	gMargaret.loadFromFile("resources/char/margaret/margaret.png"); 
+	gMargaretNeutral.loadFromFile("resources/char/margaret/margaretneutral.png");
+       	gMargaretJoy.loadFromFile("resources/char/margaret/margaretjoy.png");
+       	gMargaretSurprised.loadFromFile("resources/char/margaret/margaretsurprised.png");
+       	gMargaretAngry.loadFromFile("resources/char/margaret/margaretangry.png");
+       	gMargaretSpecial.loadFromFile("resources/char/margaret/margaretspecial.png");
+}
 
 void loadHildegarde() {
 	gHildegarde.loadFromFile("resources/char/hildegarde/hildegarde.png"); 
@@ -100,7 +127,8 @@ void loadHildegardePortrait() {
 }
 
 void loadLouis() {
-	gLouis.loadFromFile("resources/char/louis/louis.png"); 
+	gLouis.loadFromFile("resources/char/louis/louis.png");
+	gLouisHilda.loadFromFile("resources/char/louis/louishilda.png");	
 	gLouisNeutral.loadFromFile("resources/char/louis/louisneutral.png");
       	gLouisJoy.loadFromFile("resources/char/louis/louisjoy.png");  
        	gLouisSad.loadFromFile("resources/char/louis/louissad.png");  
@@ -133,11 +161,15 @@ void freeAll() {
 	gHildegardeJoy.free();
 	gMenuBG.free();
 	gCoastBG.free();
+	gLouis.free(); gLouisHilda.free(); gLouisNeutral.free(); gLouisJoy.free(); gLouisSad.free(); gLouisAngry.free(); gLouisSurprised.free(); gLouisSpecial.free(); gLouisSpecial2.free();
 	gLouisPortrait.free(); gLouisPortraitNeutral.free(); gLouisPortraitJoy.free(); gLouisPortraitSad.free(); gLouisPortraitAngry.free();  
        	gLouisPortraitSurprised.free();   
 	gLouisPortraitSpecial.free();  
        	gLouisPortraitSpecial2.free();  
        	gLouisPortraitKaikou.free(); 
 	gHildegarde.free(); gHildegardeNeutral.free(); gHildegardeJoy.free(); gHildegardeImpatient.free(); gHildegardeAngry.free(); gHildegardeGlare.free(); gHildegardeHeigan.free();
+	gMargaret.free(); gMargaretNeutral.free(); gMargaretJoy.free(); gMargaretSad.free(); gMargaretAngry.free(); gMargaretSurprised.free(); gMargaretSpecial.free();
+	gLongford.free(); gLongfordNeutral.free(); gLongfordJoy.free(); gLongfordDaring.free(); gLongfordReflect.free();
+	gBlanche.free(); gBlancheNeutral.free(); gBlancheJoy.free(); gBlancheSad.free(); gBlanchePerturbed.free(); gBlancheNeutral2.free();
 	gHildegardePortrait.free(); gHildegardePortraitNeutral.free(); gHildegardePortraitJoy.free(); gHildegardePortraitImpatient.free(); gHildegardePortraitAngry.free(); gHildegardePortraitGlare.free(); gHildegardePortraitHeigan.free();
 }

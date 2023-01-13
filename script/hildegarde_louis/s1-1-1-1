@@ -1,10 +1,10 @@
-Hilda: "Say, I think I'll go with you. You need my moral support."1
+Hilda: "Say, I think I'll go with you. You need my moral support...\at this rate you'll just drop out in the first semester."1
 Louis: "How so? As soon as you get there they'll find out\you're stu... that you cheated and send you back."1
 Hilda: "I'll figure out something."1\The next day...1
 Louis: "What's that?"1
-Hilda: "A wig and a dress. Can't you tell?"1
-Louis: "No, I meant "what's that that's wrong in your head that\makes you think I'll wear this?""1
-Hilda: "It was the best I could think of..."1
+Hilda: "Can't you tell?"1
+Louis: "No, I meant "what's that that's wrong with your head that\makes you think I'll wear this?""1
+Hilda: "It was the best I could think of."1
 Louis: "Sigh... Do you really think they won't tell it's me?"1
 Hilda: "I've checked the time tables. There's nothing preventing this\plan from succeeding."1
 Louis: "That's not what I mean."1
@@ -13,14 +13,14 @@ Louis: "I know I'll regret this..."1
 Hilda: "I'd like to do a kind of test drive first, of course...\you know... make sure the disguise doesn't fail at the worst moment."1
 Hilda: "Here, put it on."1\............1
 Hilda: "Wow, it works better than I thought. It's like we're twins."1
-Louis: "This is degrading..."1
+Louis: "Respectfully disagree."1
 Hilda: "Okay, just walk to school like this, and if nobody tells\you're not me, we'll call it a success."1
 Hilda: "Why, that's just perfect... Here comes Margaret, try to act like me.\I'll be watching from there."1
 Louis: "W-wait..."1
 Marg.: "Hilda? What are you doing standing there?"1
-Louis: "Mag... I mean, Margaret."1
+Louis: "H-hi, Margaret."1
 Marg.: "Your voice sounds awful... have you got a cold?"1
-Louis: "Ah, yeah, sure... They say dumb people don't get colds, but I\guess that was just a saying."1
+Louis: "Ah, yeah, sure... They say dumb people don't get colds, but I\guess that was just a saying!"1
 Marg.: "...are you going to school now? I thought your house was down\the street."1
 Louis: "I just felt like coming over here... go on without me..."1
 Marg.: "Er, okay... get well soon."1
@@ -46,7 +46,6 @@ Hilda: "I don't think there's enough time..."1
 Louis: "What?"1
 Hilda: "I'll be supporting you from a distance..."1
 Louis: "Wait..."1
-Louis: "......"1
 Long.: "......"1
 Louis: "......"1
 Long.: "Hildegarde?"1
@@ -62,19 +61,20 @@ Louis: "Whatever."1
 Louis: "......"1
 Hilda: "You weren't even trying this time, were you? And yet he didn't\notice anyway. I think we're set."1 
 Louis: "I think he noticed..."1 
-Hilda: "Nonsense. If he did, he would have said so."1
-Louis: "I'm going home..."1
+Hilda: "If he did, he would have said so, wouldn't he?"1
+Louis: "I'm going home."1
 Hilda: "But there's still school after this. Aren't you going to school?"1
 Louis: "Not today..."1
 Hilda: "Okay... see you tomorrow."1
 Hilda: "You know, there's something I've been wondering for a while...\How come they can't tell my version of the test was copied over?"1
-Louis: "I wrote it with a different hand."1
-Hilda: "But still, wouldn't they tell by the shapes of the lines, or\the occasional slip-up?"1
-Louis: "No, I mean I wrote it with my left hand."1
-Hilda: "You can do that?"1
-Louis: "Kind of... takes a lot of practice, though."1
+Louis: "I wrote it in a different hand."1
+Hilda: "No, I mean, wouldn't they tell it's not my usual handwriting?"1
+Louis: "So...? They don't seem to have suspected anything so far.\If it comes down to it, just tell them you wrote it with\your left hand or something."1
+Hilda: "But I'm not ambidextrous. Besides, that would be lying."1
+Louis: "What? And is sending me to pretend I'm you in class not lying?"1
+Hilda: "No, that's a mental reservation... it's very different."1
 Teacher: "Louis Langton? Can you come with me for a second?"1
-Louis: "Er, fine... Hold on, I'll be back."1\............1
+Louis: "Er, fine... Hold on, I'll be back."1
 Louis: "Hmm..."1
 Hilda: "Well? You've been silent this whole time... What was it?"1
 Louis: "The program's been canceled. Someone set off an explosive\at the ---- headquarters."1

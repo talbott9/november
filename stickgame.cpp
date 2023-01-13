@@ -37,9 +37,12 @@ void stickGame() {
 				case 1: stickGameNumber -= 2; break; //1, 2
 				case 2: stickGameNumber -= 2; break; //3, 4, 5
 				case 3: stickGameNumber -= 5; break; //6, 7
-				case 4: stickGameNumber -= 5;
+				case 4: if(stickGameNumber == 8)
+						stickGameNumber -= 5;
+					else
+						stickGameNumber -= 2;
 					break; //6, 7, 8
-				case 5: stickGameNumber -= 2;
+				case 5:	stickGameNumber -= 2;
 					break; //9, 10, 11
 				case 6: if(stickGameNumber != 12)
 						stickGameNumber -= 5;
