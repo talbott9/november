@@ -64,7 +64,7 @@ class LTexture
 };
 
 LTexture gBackground, gForeground;
-LTexture gMenuBG, gComputerBG, gStreet1BG, gStreet2BG, gLivingRoomBG, gCoastBG, gClassroomBG, gLakeBG;
+LTexture gMenuBG, gComputerBG, gStreet1BG, gStreet2BG, gLivingRoomBG, gCoastBG, gClassroomBG, gLakeBG, gStoreBG, gInsideStoreBG;
 
 LTexture gTextbox, gArrow;
 
@@ -155,7 +155,7 @@ void loadLouisPortrait() {
 
 void freeAll() {
 	//Free loaded images
-	gStreet1BG.free(); gStreet2BG.free(); gComputerBG.free(); gLivingRoomBG.free();
+	gStreet1BG.free(); gStreet2BG.free(); gComputerBG.free(); gLivingRoomBG.free(); gStoreBG.free();
 	gTextbox.free();
 	gArrow.free();
 	gHildegardeJoy.free();

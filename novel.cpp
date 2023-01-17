@@ -142,8 +142,8 @@ int main( int argc, char* args[] )
 						if(e.key.keysym.sym == SDLK_q)
 							quit = true;
 						if(e.key.keysym.sym == SDLK_a) {
-							hillou = hillou1_1;
-							indexScript(hildegardelouis1_1);				
+							hillou = hillou1_1_1;
+							indexScript(hildegardelouis1_1_1);				
 						}
 					}
 

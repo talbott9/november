@@ -19,6 +19,8 @@ void Background::render(SDL_Rect& camera) {
 		case 4: gForeground = gCoastBG; break;
 		case 5: gForeground = gClassroomBG; break;
 		case 6: gForeground = gLakeBG; break;
+		case 7: gForeground = gStoreBG; break;
+		case 8: gForeground = gInsideStoreBG; break;
 	}
 
 	if(changeBG) {
