@@ -1,14 +1,16 @@
-Hilda: "Let's go to "The Store"."1
+Hilda: "Let's go to 'The Store'."1
 Louis: "Huh? Which store?"1
 Hilda: "The Store... don't you know it? It has everything."1
-Louis: "That's silly... there's no store in this neighborhood named\"The Store"."1
+Louis: "That's silly... there's no store in this neighborhood named\'The Store'."1
 Hilda: "Oh, yes, there is. Come with me and you'll see."1
 Louis: "This is ridiculous..."1
-Hilda: "See? The Store."1
+Hilda: "See?"1
 Louis: "I don't remember this being here."1
-Hilda: "It was only built a couple of months ago... maybe you didn't notice."1
+Hilda: "It was only built a couple of months ago, I think... maybe\you didn't notice."1
+Louis: "The signboard's misspelled."1
+Hilda: "And?"1
 Louis: "This doesn't look like it has everything."1
-Hilda: "It's bigger on the inside than it looks."1
+Hilda: "It's bigger on the inside than it looks. Let's go."1
 Clerk: "Welcome to The Store! How can I help you?"1
 Louis: "Er... do you sell computer mouses?"1
 Clerk: "We sell anything!"1
@@ -17,7 +19,7 @@ Clerk: "No."1
 Louis: "......"1
 Clerk: "......"1
 Clerk: "Here is your mouse, sir."1
-Louis: "That's not a mouse... that's a piece of tofu with a cord attached\to it."1
+Louis: "That's not a mouse... that's a piece of tofu with a cord\attached to it."1
 Hilda: "Does it work, at least?"1
 Clerk: "You can test it on this computer."1
 Louis: "That's not a computer... that's a giant piece of tofu."1

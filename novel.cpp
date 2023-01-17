@@ -125,6 +125,8 @@ int main( int argc, char* args[] )
 					}
 					if(promptSelect)
 						renderButtons();
+					else if(tobasu && activeDialogue)
+						skipText();
 				} else {
 					menu.renderMenu();
 				}
@@ -142,8 +144,8 @@ int main( int argc, char* args[] )
 						if(e.key.keysym.sym == SDLK_q)
 							quit = true;
 						if(e.key.keysym.sym == SDLK_a) {
-							hillou = hillou1_1_1;
-							indexScript(hildegardelouis1_1_1);				
+							hillou = hillou1_1_2;
+							indexScript(hildegardelouis1_1);				
 						}
 					}
 
@@ -152,6 +154,7 @@ int main( int argc, char* args[] )
 						button.handleEvent(e);
 					if(activeDialogue)
 						cutscene.handleEvent(e, scriptLine[lineNumber]);
+					checkSkip(e);
 					if(menuStep != 1)
 						menu.handleEvent(e);
 				}

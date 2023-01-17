@@ -18,6 +18,7 @@ bool charFade, charFadeSuccess;
 bool charFadeOut, charFadeIn;
 int complimentPoints;
 bool switchlever;
+bool tobasu;
 
 
 const int NUMBER_OF_LINES = 100;
@@ -88,6 +89,26 @@ void indexScript(std::ifstream& script) {
 	i = 0;
 }
 
+int skipTextTicks = 1;
+void skipText() {
+	skipTextTicks++;
+	if(skipTextTicks%5 == 0) {
+		doNotType = 1;
+		freeText(&gText);
+		trigger++; lineNumber++; background.success = 0;
+		charFade = 0; charFadeSuccess = 0; renderCharAlpha = 0;
+		skipTextTicks = 1;
+	}
+}
+
+void checkSkip(SDL_Event& e) {
+	if(e.type == SDL_KEYUP && e.key.repeat == 0) {
+		switch(e.key.keysym.sym) {
+			case SDLK_LCTRL: tobasu = 0; break;
+		}
+	}
+}
+
 void Cutscene::handleEvent(SDL_Event& e, std::string s) {
 	if(e.type == SDL_KEYDOWN && e.key.repeat == 0) {
 		switch(e.key.keysym.sym) {
@@ -100,6 +121,7 @@ void Cutscene::handleEvent(SDL_Event& e, std::string s) {
 						freeText(&gText);
 						trigger++; lineNumber++; background.success = 0;
 						charFade = 0; charFadeSuccess = 0; renderCharAlpha = 0;
+						tobasu = 0;
 					}
 				} else {
 					if(checkCollision(mouseBox, button1) || checkCollision(mouseBox, button2)) {
@@ -109,10 +131,12 @@ void Cutscene::handleEvent(SDL_Event& e, std::string s) {
 							bunki = 1;
 						}
 						freeText(&gText);
-						trigger++;
+						trigger++; tobasu = 0;
 					}
 				}
 				break;
+			case SDLK_LCTRL: tobasu = 1;
+					 break;
 		}
 	}
 	if(e.type == SDL_MOUSEBUTTONDOWN) {
@@ -126,6 +150,7 @@ void Cutscene::handleEvent(SDL_Event& e, std::string s) {
 						freeText(&gText);
 						trigger++; lineNumber++; background.success = 0;
 						charFade = 0; charFadeSuccess = 0; renderCharAlpha = 0;
+						tobasu = 0;
 					}
 				} else {
 					if(checkCollision(mouseBox, button1) || checkCollision(mouseBox, button2)) {
@@ -135,7 +160,7 @@ void Cutscene::handleEvent(SDL_Event& e, std::string s) {
 							bunki = 1;
 						}
 						freeText(&gText);
-						trigger++;
+						trigger++; tobasu = 0;
 					}
 				}
 				break;
@@ -144,7 +169,7 @@ void Cutscene::handleEvent(SDL_Event& e, std::string s) {
 }
 
 void charAnim(LTexture* gChar, LTexture* gCharFace) {
-	if(charFade && !charFadeSuccess) {
+	if(charFade && !charFadeSuccess && !tobasu) {
 		charFadeSuccess = 0;
 		renderCharAlpha += 15;
 		gChar->setBlendMode(SDL_BLENDMODE_BLEND);
@@ -158,8 +183,11 @@ void charAnim(LTexture* gChar, LTexture* gCharFace) {
 		}
 		if(renderCharAlpha == 255) {
 			charFade = 0; charFadeSuccess = 1;
-			renderCharAlpha = 0;
+			renderCharAlpha = 0; 
+		
 		}
+	} else {
+		gChar->setAlpha(255); gCharFace->setAlpha(255);
 	}
 }
 
@@ -288,10 +316,12 @@ void charFadeOutThenIn() {
 
 
 void resetToMenu() {
+	printf("%i\n", determineChars());
 	for(int i =0; i < NUMBER_OF_LINES; i++)
 		scriptLine[i] = "";
 	switch(determineChars()) {
 		case louis_hildegarde:
+			louhil = louhil1;
 			louishildegarde1.clear(); 
 			louishildegarde1.seekg(0, std::ios::beg);
 			louishildegarde1_1.clear(); 
@@ -306,17 +336,39 @@ void resetToMenu() {
 			louishildegarde1_1_2_2_1_1.seekg(0, std::ios::beg);
 			louishildegarde1_1_2_2_1_2.clear(); 
 			louishildegarde1_1_2_2_2.seekg(0, std::ios::beg);
-			louishildegarde1_1_2_2_3.clear(); 
+			louishildegarde1_1_2_2_3.clear();
+		        louishildegarde1_1_2_2_3.seekg(0, std::ios::beg);	
+			break;
+		case hildegarde_louis:
+			hillou = hillou1;
+			hildegardelouis1.clear(); 
+			hildegardelouis1.seekg(0, std::ios::beg);
+			hildegardelouis1_1.clear(); 
+			hildegardelouis1_1.seekg(0, std::ios::beg);
+			hildegardelouis1_1_1.clear(); 
+			hildegardelouis1_1_1.seekg(0, std::ios::beg);
+			hildegardelouis1_1_1_1.clear(); 
+			hildegardelouis1_1_1_1.seekg(0, std::ios::beg);
+			hildegardelouis1_1_1_2.clear(); 
+			hildegardelouis1_1_1_2.seekg(0, std::ios::beg);
+			hildegardelouis1_1_2.clear(); 
+			hildegardelouis1_1_2.seekg(0, std::ios::beg);
+			hildegardelouis1_2.clear(); 
+			hildegardelouis1_2.seekg(0, std::ios::beg);
+			hildegardelouis1_2_1.clear(); 
+			hildegardelouis1_2_1.seekg(0, std::ios::beg);
+			hildegardelouis1_2_2.clear(); 
+			hildegardelouis1_2_2.seekg(0, std::ios::beg);
 			break;
 	}
 	trigger = 0; lineNumber = 0; freeText(&gText); menuStep = 0;
-	louhil = louhil1; background.success = 0; charFadeSuccess = 0;
-	activeDialogue = 0; freeAll();
+	background.success = 0; charFadeSuccess = 0;
+	activeDialogue = 0; freeAll(); switchlever = 0; tobasu = 0;
 }
 
 void resetScene() {
 	 freeText(&gText); trigger = 0; lineNumber = 0; promptSelect = 0;
-	 background.success = 0; charFadeSuccess = 0;
+	 background.success = 0; charFadeSuccess = 0; switchlever = 0; tobasu = 0;
 }
 
 #include "stickgame.cpp"
@@ -435,8 +487,9 @@ void Cutscene::louis_hildegarde() {
 				case 21: if(!charFadeSuccess) {
 						 charFadeOut = 1;
 						 charFade = 1;
+						 renderCharacter(1, 0); 
 					 }
-					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 3); break;
+					 renderTextbox(); renderPortrait(0, 3); break;
 				case 22: renderTextbox(); renderPortrait(0, 0); break;
 				case 23: charFadeSuccess = 0; charFadeOut = 0;
 					 if(!background.success)
@@ -504,8 +557,9 @@ void Cutscene::louis_hildegarde() {
 				case 20: if(!charFadeSuccess) {
 						 charFadeOut = 1;
 						 charFade = 1;
+						 renderCharacter(1, 0); 
 					 }
-					 renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+					 renderTextbox(); renderPortrait(0, 0); break;
 				case 21: renderTextbox(); renderPortrait(0, 0); break;
 				case 22: resetToMenu(); break;
 			} break;
@@ -680,8 +734,9 @@ void Cutscene::louis_hildegarde() {
 				case 3: if(!charFadeSuccess) {
 						 charFadeOut = 1;
 						 charFade = 1;
+						 renderCharacter(1, 0); 
 					 }
-					renderCharacter(1, 0); renderTextbox(); renderPortrait(0, 0); break;
+					renderTextbox(); renderPortrait(0, 0); break;
 				case 4: charFadeSuccess = 0; renderTextbox(); renderPortrait(0, 0); break;
 				case 5: renderTextbox(); renderPortrait(0, 0); break;
 				case 6: renderTextbox(); renderPortrait(0, 0); break;
@@ -708,8 +763,9 @@ void Cutscene::louis_hildegarde() {
 				case 13: renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 7); break;
 				case 14: if(!charFadeSuccess) {
 						charFadeOut = 1;
-						charFade = 1; 
-					} renderCharacter(1, 5); renderTextbox(); renderPortrait(0, 7); break;
+						charFade = 1;
+						 renderCharacter(1, 5); 
+					}renderTextbox(); renderPortrait(0, 7); break;
 				case 15: renderTextbox(); renderPortrait(0, 1); break;
 				case 16: resetToMenu(); break;
 			} break;
@@ -725,8 +781,9 @@ void Cutscene::louis_hildegarde() {
 				case 7: if(!charFadeSuccess) {
 						charFadeOut = 1;
 						charFade = 1;
+						renderCharacter(1, 1); 
 					} 
-					renderCharacter(1, 1); renderTextbox(); renderPortrait(0, 0); break;
+					renderTextbox(); renderPortrait(0, 0); break;
 				case 8: charFadeSuccess = 0; renderTextbox(); renderPortrait(0, 0); break;
 				case 9: resetToMenu(); break;
 			} break;
@@ -858,10 +915,12 @@ void Cutscene::hildegarde_louis() {
 				case 18: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 19: if(!background.success)
 						 background.changeBG = 1;
-					 charFadeOut = 1;
-					 charFade = 1;
-					 background.bgID = 5;
-					 renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+					 if(!charFadeSuccess) {
+					 	charFadeOut = 1;
+					 	charFade = 1;
+					 	background.bgID = 5;
+					 	renderCharacter(0, 0); 
+					 }renderTextbox(); renderPortrait(1, 0); break;
 				case 20: renderTextbox(); renderPortrait(1, 0); break;
 				case 21: renderTextbox(); renderPortrait(1, 0); break;
 				case 22: renderTextbox(); renderPortrait(1, 0); break;
@@ -880,9 +939,10 @@ void Cutscene::hildegarde_louis() {
 					 } else {
 						 charFadeOut = 0;
 						 charFade = 1;
+						 renderCharacter(0, 0); 
 					 }
 					 background.bgID = 2;
-					 renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+					 renderTextbox(); renderPortrait(1, 0); break;
 				case 34: renderCharAlpha = 255; charFade = 0; renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 35: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 36: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
@@ -907,7 +967,9 @@ void Cutscene::hildegarde_louis() {
 					if(!background.success)
 						background.changeBG = 1;
 					background.bgID = 1;
-					renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+					if(!charFadeSuccess)
+						renderCharacter(0, 0); 
+					renderTextbox(); renderPortrait(1, 0); break;
 				case 4:	charFadeOut = 0;
 					charFade = 1;
 					renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
@@ -924,19 +986,20 @@ void Cutscene::hildegarde_louis() {
 				case 15: if(!charFadeSuccess) {
 						 charFadeOut = 1;
 						 charFade = 1; 
+						 renderCharacter(0, 0); 
 					 }
-					 renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+					 renderTextbox(); renderPortrait(1, 0); break;
 				case 16: if(!charFadeSuccess) {
 						 charFadeOut = 0;
 						 charFade = 1;
 					 }
 					 renderCharacter(0, 6, 1); renderTextbox(); renderPortrait(1, 1); break;
-				case 17: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 1); break;
+				case 17: charFade = 0; renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 1); break;
 				case 18: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 1); break;
 				case 19: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 20: renderCharacter(0, 4, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 21: if(!charFadeSuccess) {
-						  charFadeIn = 1;
+						  charFadeOut = 0;
 						  charFade = 1;
 					  }
 					 renderCharacter(0, 0, 1, -200); renderCharacter(2, 4, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
@@ -959,15 +1022,15 @@ void Cutscene::hildegarde_louis() {
 				case 38: renderCharacter(0, 0, 1, -200); renderCharacter(4, 4, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 39: renderCharacter(0, 0, 1, -200); renderCharacter(4, 4, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 40: renderCharacter(0, 0, 1, -200); renderCharacter(4, 4, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
-				case 41: renderCharacter(0, 0, 1, -200); renderCharacter(4, 3, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
-				case 42: renderCharacter(0, 0, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
+				case 41: renderCharacter(0, 0, 1, -200); renderCharacter(4, 4, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 42: renderCharacter(0, 0, 1, -200); renderCharacter(4, 3, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 43: renderCharacter(0, 0, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
-				case 44: renderCharacter(0, 3, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
+				case 44: renderCharacter(0, 0, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
 				case 45: renderCharacter(0, 3, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
-				case 46: renderCharacter(0, 0, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
+				case 46: renderCharacter(0, 3, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
 				case 47: renderCharacter(0, 0, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
 				case 48: renderCharacter(0, 0, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
-				case 49: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 49: renderCharacter(0, 0, 1, -200); renderTextbox(); renderPortrait(1, 0); break;
 				case 50: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 51: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 52: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
@@ -975,11 +1038,12 @@ void Cutscene::hildegarde_louis() {
 				case 54: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 55: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 56: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
-				case 57: renderCharacter(0, 0, 1, -200); renderCharacter(3, 1, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
-				case 58: renderCharacter(0, 6, 1, -200); renderCharacter(3, 1, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
-				case 59: renderCharacter(0, 6, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
-				case 60: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
-				case 61: if(!charFadeSuccess) {
+				case 57: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 58: renderCharacter(0, 0, 1, -200); renderCharacter(3, 1, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 59: renderCharacter(0, 6, 1, -200); renderCharacter(3, 1, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 60: renderCharacter(0, 6, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 61: renderCharacter(0, 0, 1, -200); renderCharacter(3, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 62: if(!charFadeSuccess) {
 						 charFadeOut = 1;
 						 charFade = 1;
 						 renderCharacter(0, 0, 1, -200); 
@@ -993,26 +1057,29 @@ void Cutscene::hildegarde_louis() {
 						 renderCharacter(0, 0, 1);
 					 }
 					 renderTextbox(); renderPortrait(1, 0); break;
-				case 62: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 63: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 64: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 65: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 66: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 67: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
 				case 68: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
-				case 69: if(!background.success) {
+				case 69: renderCharacter(0, 0, 1); renderTextbox(); renderPortrait(1, 0); break;
+				case 70: if(!background.success) {
 						 charFadeOut = 1;
 						 charFade = 1;
 						 background.changeBG = 1;
 						 background.bgID = 5;
 						 switchlever = 1;
+						 renderCharacter(0, 0, 1); 
 					 } else if(switchlever) {
 						 switchlever = 0;
 						 charFadeIn = 1;
 						 charFade = 1;
+						 renderCharacter(0, 0); 
+					 } else {
+						 renderCharacter(0, 0); 
 					 }
-					 renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 70: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+					 renderTextbox(); renderPortrait(1, 0); break;
 				case 71: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 72: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 73: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
@@ -1020,19 +1087,10 @@ void Cutscene::hildegarde_louis() {
 				case 75: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 76: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 77: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 78: if(!background.success) {
-						 charFadeOut = 1;
-						 charFade = 1;
-						 background.changeBG = 1;
-						 background.bgID = 2;
-						 switchlever = 1;
-					 } else if(switchlever) {
-						 switchlever = 0;
-						 charFadeIn = 1;
-						 charFade = 1;
-					 }
+				case 78: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+				case 79: charFadeOutThenIn();
+					 background.bgID = 2;
 					 renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 79: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 80: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 81: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 82: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
@@ -1040,9 +1098,10 @@ void Cutscene::hildegarde_louis() {
 				case 84: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 85: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 86: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 87: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 1); break;
-				case 88: renderCharacter(0, 3); renderTextbox(); renderPortrait(1, 1); break;
-				case 89: resetToMenu();
+				case 87: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+				case 88: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 1); break;
+				case 89: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 1); break;
+				case 90: resetToMenu();
 			} break;
 		case hillou1_1_1_2:
 			switch(trigger) {
@@ -1060,8 +1119,9 @@ void Cutscene::hildegarde_louis() {
 				case 11: if(!charFadeSuccess) {
 						 charFadeOut = 1;
 						 charFade = 1;
+						 renderCharacter(0, 0);
 					 }
-					 renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+					 renderTextbox(); renderPortrait(1, 0); break;
 				case 12: resetToMenu(); break;
 			} break;
 		case hillou1_1_2:
@@ -1111,29 +1171,24 @@ void Cutscene::hildegarde_louis() {
 					renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 3: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 4: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 5: renderCharacter(0, 6); renderTextbox(); renderPortrait(1, 0); break;
-				case 6: renderCharacter(0, 4); renderTextbox(); renderPortrait(1, 0); break;
+				case 5: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+				case 6: renderCharacter(0, 6); renderTextbox(); renderPortrait(1, 0); break;
 				case 7: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 8: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 9: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 10: if(!background.success) {
+				case 10: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+				case 11: if(!background.success) {
 						 background.changeBG = 1;
 					 }
 					background.bgID = 4; renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 11:renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 12: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+				case 12:renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 13: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 14: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 15: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 16: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
 				case 17: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 18: resetToMenu(); break;
-				case 19: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 20: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 21: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 22: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 23: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
-				case 24: resetToMenu(); break;
+				case 18: renderCharacter(0, 0); renderTextbox(); renderPortrait(1, 0); break;
+				case 19: resetToMenu(); break;
 			} break;
 		case hillou1_2_2:
 			switch(trigger) {
@@ -1150,11 +1205,11 @@ void Cutscene::hildegarde_louis() {
 							charFadeIn = 1;
 							charFade = 1;
 						}
-						renderCharacter(0, 6, 0, 200);
+						renderCharacter(0, 0, 0, 200);
 					}
 					background.bgID = 7;
 					renderTextbox(); renderPortrait(1, 0); break;
-				case 6: renderCharacter(0, 6, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
+				case 6: renderCharacter(0, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 7: renderCharacter(0, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 8: renderCharacter(0, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
 				case 9: renderCharacter(0, 0, 0, 200); renderTextbox(); renderPortrait(1, 0); break;
